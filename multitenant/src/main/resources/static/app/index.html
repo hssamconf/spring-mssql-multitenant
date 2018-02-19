@@ -2,30 +2,55 @@
 <html lang="fr" ng-app="MultitenantApp">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Multitenant Angular1.6.7</title>
+    <link rel="icon" href="assets/favicon.ico">
 
+    <title>Multitenant AngularJS</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 <body ng-controller="MainController">
 
-<div class="text-center">
-    <h1>Hello, world!</h1>
-    <p>
-        Angular Version: {{angularVersion}}
-    </p>
-    <p>
-        Bootstrap Version: {{bootstrapVersion}}
-    </p>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Demo Multitenant</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" ui-sref="accueil" ui-sref-active="active">Acceuil </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ui-sref="login" ui-sref-active="active">Login </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <ui-view></ui-view>
 </div>
+
 
 <script src="../bower_components/jquery/dist/jquery.slim.min.js"></script>
 <script src="../bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--AngularJS-->
 <script src="../bower_components/angular/angular.min.js"></script>
-<script src="main.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+<script src="../main.js"></script>
+<script src="controllers/MainController.js"></script>
 </body>
 </html>
