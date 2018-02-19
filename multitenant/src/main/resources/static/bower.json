@@ -1,0 +1,27 @@
+{
+  "name": "multitenant-front",
+  "description": "Demo Project using Multi-Tenant (User per Database) Saas architecture.",
+  "main": "index.html",
+  "authors": [
+    "RAFIKI Houssam-Eddine"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "spring",
+    "spring",
+    "mvc",
+    "spring",
+    "data",
+    "angularjs",
+    "mssql",
+    "multitenant"
+  ],
+  "homepage": "https://github.com/hssamconf/spring-mssql-multitenant",
+  "private": true,
+  "dependencies": {
+    "angular": "1.6.7",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9"
+  }
+}
