@@ -1,4 +1,4 @@
-package lu.findl.multitenant.security;
+package lu.findl.multitenant.helpers;
 
 
 import io.jsonwebtoken.Claims;

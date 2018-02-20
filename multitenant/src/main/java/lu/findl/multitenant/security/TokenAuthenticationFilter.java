@@ -12,6 +12,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import lu.findl.multitenant.helpers.TokenHelper;
+
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
 	private final Log logger = LogFactory.getLog(this.getClass());

@@ -18,6 +18,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import lu.findl.multitenant.helpers.TokenHelper;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -77,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// disable csrf for the login request
 		http
 		.csrf()
-		.ignoringAntMatchers("/api/**")
+		.ignoringAntMatchers("/auth/login")
 		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 	

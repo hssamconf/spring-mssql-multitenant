@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lu.findl.multitenant.entities.Account;
+import lu.findl.multitenant.helpers.TokenHelper;
 import lu.findl.multitenant.services.IMetier;
 
 @Component
