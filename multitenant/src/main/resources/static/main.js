@@ -1,7 +1,23 @@
 // Define the `MultitenantApp` module
-var MultitenantApp = angular.module('MultitenantApp', ['ngAnimate','ui.router', 'oc.lazyLoad']);
+var MultitenantApp = angular.module('MultitenantApp', ['ngAnimate', 'ui.router', 'oc.lazyLoad', 'toastr']);
 
 MultitenantApp.constant('API_URL', '');
+
+MultitenantApp.constant('AUTH_EVENTS', {
+    notAuthorized: 'auth-not-authorized',
+    fatalError: 'auth-fatal-error'
+});
+
+// angular toaster config
+MultitenantApp.config(function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        closeButton: true,
+        progressBar: true,
+        preventDuplicates: true,
+        newestOnTop: true,
+        target: 'body'
+    });
+});
 
 // ocLazyLoad Config
 MultitenantApp.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
@@ -21,6 +37,9 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/accueil.html",
             controller: "AccueilController",
             resolve: {
+                user: function ($http) {
+                    return $http.get("/api/whoami");
+                },
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
                         name: 'MultitenantApp',

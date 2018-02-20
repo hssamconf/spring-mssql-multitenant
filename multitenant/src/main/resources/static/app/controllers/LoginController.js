@@ -1,5 +1,5 @@
 // Define the `LoginController` controller on the `MultitenantApp` module
-angular.module('MultitenantApp').controller('LoginController', function LoginController($scope, API_URL, $http, $httpParamSerializerJQLike) {
+angular.module('MultitenantApp').controller('LoginController', function LoginController($scope, API_URL, $http, $httpParamSerializerJQLike,toastr) {
     console.log("Init LoginController");
     var LoginController = $scope.LoginController;
     //init user object which contains credentials(username and password)
@@ -17,11 +17,11 @@ angular.module('MultitenantApp').controller('LoginController', function LoginCon
             })
                 .then(function (res) {
                     //$state.go('accueil');
-                    alert("SUCCESS");
+                    toastr.success('Hello world!', 'Toastr fun!');
                 })
                 .catch(function (res) {
                     if (res.status === 401) {
-                        alert("401 ERROR");
+                        toastr.warning('Credentials Incorrect!', 'Warning');
                     }
                 });
 
