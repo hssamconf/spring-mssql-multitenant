@@ -35,7 +35,7 @@
                     <a class="nav-link" ui-sref="login" ui-sref-active="active">Login </a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto" ng-if="MainController.isAuthentified">
+            <ul class="navbar-nav ml-auto" ng-if="user">
                 <li class="nav-item">
                     <a class="nav-link" href="" ng-click="MainController.logout()">Logout</a>
                 </li>

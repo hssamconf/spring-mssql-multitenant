@@ -8,13 +8,9 @@ angular.module('MultitenantApp').controller('MainController', function MainContr
 
     var MainController = $scope.MainController;
 
-    // tell us if the user is authentified or no
-    MainController.isAuthentified = false;
-
     MainController.logout = function () {
         $http.post('/auth/logout');
         $rootScope.user = null;
-        MainController.isAuthentified = false;
         if ($state.current.name !== "login")
             $state.go("login");
     };
@@ -28,7 +24,6 @@ angular.module('MultitenantApp').controller('MainController', function MainContr
     });
 
     $scope.$on(AUTH_EVENTS.authenticated, function (event, args) {
-        MainController.isAuthentified = true;
         $rootScope.user = args.user;
     });
 
