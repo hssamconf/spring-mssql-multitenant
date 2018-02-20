@@ -1,5 +1,7 @@
 // Define the `MultitenantApp` module
-var MultitenantApp = angular.module('MultitenantApp', ['ui.router', 'oc.lazyLoad']);
+var MultitenantApp = angular.module('MultitenantApp', ['ngAnimate','ui.router', 'oc.lazyLoad']);
+
+MultitenantApp.constant('API_URL', '');
 
 // ocLazyLoad Config
 MultitenantApp.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
@@ -38,6 +40,7 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load({
                         name: 'MultitenantApp',
                         files: [
+                            'assets/css/login.css',
                             'controllers/LoginController.js'
                         ]
                     });

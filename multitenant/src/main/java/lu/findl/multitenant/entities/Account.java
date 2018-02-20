@@ -15,21 +15,24 @@ public class Account extends AbstractEntity {
 	private String databaseName;
 	@Column(name = "database_pwd", nullable = false)
 	private String databasePwd;
+	@Column(name = "role_name", nullable = false)
+	private String roleName;
 
 	@Override
 	public String toString() {
 		return "Account [username=" + username + ", password=" + password + ", databaseName=" + databaseName
-				+ ", databasePwd=" + databasePwd + "]";
+				+ ", databasePwd=" + databasePwd + ", roleName=" + roleName + "]";
 	}
 
 	public Account() {
 	}
 
-	public Account(String username, String password, String databaseName, String databasePwd) {
+	public Account(String username, String password, String databaseName, String databasePwd, String roleName) {
 		this.username = username;
 		this.password = password;
 		this.databaseName = databaseName;
 		this.databasePwd = databasePwd;
+		this.roleName = roleName;
 	}
 
 	public String getUsername() {
@@ -62,6 +65,14 @@ public class Account extends AbstractEntity {
 
 	public void setDatabasePwd(String databasePwd) {
 		this.databasePwd = databasePwd;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 }

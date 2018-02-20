@@ -24,6 +24,7 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "angular-ui-router": "^1.0.15",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "angular-animate": "^1.6.9"
   }
 }

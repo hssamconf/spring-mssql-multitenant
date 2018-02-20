@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lu.findl.multitenant.entities.Account;
@@ -18,11 +19,12 @@ public class MultitenantApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		String crypt = BCrypt.hashpw("Casa123++", BCrypt.gensalt());
 
-		metier.saveAccount(new Account("user_1", "Casa123++", "tenant1_multitenant", "Casa123++"));
-		metier.saveAccount(new Account("user_2", "Casa123++", "tenant2_multitenant", "Casa123++"));
-		metier.saveAccount(new Account("user_3", "Casa123++", "tenant3_multitenant", "Casa123++"));
-		metier.saveAccount(new Account("user_4", "Casa123++", "tenant4_multitenant", "Casa123++"));
+		metier.saveAccount(new Account("user_1", BCrypt.hashpw("Casa123++", BCrypt.gensalt()), "tenant1_multitenant", "Casa123++","ROLE_USER"));
+		metier.saveAccount(new Account("user_2", BCrypt.hashpw("Casa123++", BCrypt.gensalt()), "tenant2_multitenant", "Casa123++","ROLE_USER"));
+		metier.saveAccount(new Account("user_3", BCrypt.hashpw("Casa123++", BCrypt.gensalt()), "tenant3_multitenant", "Casa123++","ROLE_USER"));
+		metier.saveAccount(new Account("user_4", BCrypt.hashpw("Casa123++", BCrypt.gensalt()), "tenant4_multitenant", "Casa123++","ROLE_USER"));
 
 	}
 
