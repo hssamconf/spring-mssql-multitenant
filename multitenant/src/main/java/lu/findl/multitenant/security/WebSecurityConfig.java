@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// disable csrf for the login request
 		http
 		.csrf()
-		.ignoringAntMatchers("/auth/login")
+		.ignoringAntMatchers("/auth/**")
 		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 	

@@ -1,9 +1,10 @@
 // Define the `LoginController` controller on the `MultitenantApp` module
-angular.module('MultitenantApp').controller('LoginController', function LoginController($scope, API_URL, $http, $httpParamSerializerJQLike,toastr) {
+angular.module('MultitenantApp').controller('LoginController', function LoginController($state, $scope, API_URL, $http, $httpParamSerializerJQLike, toastr) {
     console.log("Init LoginController");
     var LoginController = $scope.LoginController;
+
     //init user object which contains credentials(username and password)
-    LoginController.user = {};
+    LoginController.user = {username: "user_1", password: "Casa123++"};
 
     LoginController.login = function (isValid) {
         if (isValid) {
@@ -16,8 +17,7 @@ angular.module('MultitenantApp').controller('LoginController', function LoginCon
                 }
             })
                 .then(function (res) {
-                    //$state.go('accueil');
-                    toastr.success('Hello world!', 'Toastr fun!');
+                    $state.go('accueil');
                 })
                 .catch(function (res) {
                     if (res.status === 401) {
@@ -29,9 +29,4 @@ angular.module('MultitenantApp').controller('LoginController', function LoginCon
             alert("FORM ERROR");
         }
     };
-
-    LoginController.logout = function () {
-        $http.post('/auth/logout', {});
-    };
-
 });

@@ -5,7 +5,8 @@ MultitenantApp.constant('API_URL', '');
 
 MultitenantApp.constant('AUTH_EVENTS', {
     notAuthorized: 'auth-not-authorized',
-    fatalError: 'auth-fatal-error'
+    fatalError: 'auth-fatal-error',
+    authenticated: 'auth-authenticated'
 });
 
 // angular toaster config
@@ -37,8 +38,10 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/accueil.html",
             controller: "AccueilController",
             resolve: {
-                user: function ($http) {
-                    return $http.get("/api/whoami");
+                user: function ($http, $rootScope,AUTH_EVENTS) {
+                    return $http.get("/api/whoami").then(function (res) {
+                        $rootScope.$broadcast(AUTH_EVENTS.authenticated, {user: res.data.data});
+                    });
                 },
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -67,4 +70,13 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         });
 
+});
+
+MultitenantApp.run(function ($rootScope, $state) {
+    console.log("MultitenantApp.run() ...");
+    // state to be accessed from view
+    $rootScope.$state = $state;
+    // null means that we don't know if the user is
+    // logged in or no (we have to query auth/whoami to know)
+    $rootScope.user = null;
 });
