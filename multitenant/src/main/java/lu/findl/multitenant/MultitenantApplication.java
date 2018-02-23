@@ -6,15 +6,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class MultitenantApplication extends SpringBootServletInitializer {
+public class MultitenantApplication { /*extends SpringBootServletInitializer*/
 
-	public static void main(String[] args) {
-		SpringApplication.run(MultitenantApplication.class, args);
-	}
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(MultitenantApplication.class, args);
+    }
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(MultitenantApplication.class);
-	}
-
+    /*@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(MultitenantApplication.class);
+    }*/
 }

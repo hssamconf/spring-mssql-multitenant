@@ -30,7 +30,7 @@ MultitenantApp.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
 // ui router Config
 MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/accueil.html');
+    $urlRouterProvider.otherwise('/login.html');
 
     $stateProvider
         .state('accueil', {
