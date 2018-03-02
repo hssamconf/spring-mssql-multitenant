@@ -1,0 +1,19 @@
+app:
+  name: Multitenant
+jwt:
+  header: Authorization
+  expires_in: 86400 # 2 mi utes
+  secret: multitenant
+  cookie: AUTH-TOKEN
+
+central:
+  datasource:
+    url: jdbc:sqlserver://192.168.1.29:1433;databaseName=central_multitenant
+    username: sa
+    password: Casa123++
+
+tenant:
+  datasource:
+    url: jdbc:sqlserver://192.168.1.29:1433;databaseName=tenant
+    username: sa
+    password: Casa123++

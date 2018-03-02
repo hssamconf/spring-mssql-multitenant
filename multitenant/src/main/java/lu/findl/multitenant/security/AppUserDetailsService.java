@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import lu.findl.multitenant.entities.Account;
-import lu.findl.multitenant.repositories.AccountRepository;
+import lu.findl.multitenant.entities.central.Account;
+import lu.findl.multitenant.repositories.central.AccountRepository;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
