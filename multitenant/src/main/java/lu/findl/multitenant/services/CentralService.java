@@ -6,11 +6,11 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lu.findl.multitenant.entities.Account;
-import lu.findl.multitenant.repositories.AccountRepository;
+import lu.findl.multitenant.entities.central.Account;
+import lu.findl.multitenant.repositories.central.AccountRepository;
 
 @Service
-public class Metier implements IMetier {
+public class CentralService implements ICentralService {
 
 	@Autowired
 	private AccountRepository accountRepository;

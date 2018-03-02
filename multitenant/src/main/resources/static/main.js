@@ -53,6 +53,29 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('customers', {
+            url: "/customers.html",
+            templateUrl: "views/customers.html",
+            controller: "CustomersController",
+            resolve: {
+                user: function ($http, $rootScope,AUTH_EVENTS) {
+                    return $http.get("/api/whoami").then(function (res) {
+                        $rootScope.$broadcast(AUTH_EVENTS.authenticated, {user: res.data.data});
+                    });
+                },
+                customers: function ($http) {
+                    return $http.get("/api/getAllCustomers");
+                },
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MultitenantApp',
+                        files: [
+                            'controllers/CustomersController.js'
+                        ]
+                    });
+                }]
+            }
+        })
         .state('login', {
             url: "/login.html",
             templateUrl: "views/login.html",

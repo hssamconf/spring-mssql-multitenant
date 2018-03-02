@@ -1,9 +1,11 @@
-package lu.findl.multitenant.entities;
+package lu.findl.multitenant.entities.central;
+
+import lu.findl.multitenant.entities.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name = "account")
 public class Account extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 

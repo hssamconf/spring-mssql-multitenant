@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lu.findl.multitenant.entities.Account;
+import lu.findl.multitenant.entities.central.Account;
 import lu.findl.multitenant.helpers.TokenHelper;
-import lu.findl.multitenant.services.IMetier;
+import lu.findl.multitenant.services.ICentralService;
 
 @Component
 public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -34,7 +34,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
 	ObjectMapper objectMapper;
 
 	@Autowired
-	IMetier metier;
+	ICentralService metier;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
