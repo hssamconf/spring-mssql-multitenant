@@ -48,10 +48,7 @@ public class MainController {
     @RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
     public ResponseEntity<?> getAllCustomers() {
         try {
-            Map<String, Object> res = new HashMap<>();
-            res.put("lsCustomers", tenantService.getAllCustomers());
-
-            return ResponseEntity.status(HttpStatus.OK).body(new Reponse(0, res));
+            return ResponseEntity.status(HttpStatus.OK).body(new Reponse(0, tenantService.getAllCustomers()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
         }
