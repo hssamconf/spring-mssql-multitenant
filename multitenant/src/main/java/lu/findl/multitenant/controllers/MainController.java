@@ -27,7 +27,7 @@ public class MainController {
 	private IMetier metier;
 
 	@RequestMapping(value = "/whoami", method = RequestMethod.GET)
-	public ResponseEntity<?> whoami() throws InterruptedException {
+	public ResponseEntity<?> whoami() {
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Account account = ((AppUserDetails) auth.getPrincipal()).getAccount();
