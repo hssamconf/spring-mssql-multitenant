@@ -14,6 +14,6 @@ central:
 
 tenant:
   datasource:
-    url: jdbc:sqlserver://192.168.1.29:1433;databaseName=tenant
+    url: jdbc:sqlserver://192.168.1.29:1433;databaseName=default_multitenant
     username: sa
     password: Casa123++
