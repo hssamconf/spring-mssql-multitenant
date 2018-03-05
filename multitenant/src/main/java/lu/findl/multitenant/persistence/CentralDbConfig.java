@@ -78,6 +78,7 @@ public class CentralDbConfig {
     }
 
     @Bean(name = "centralTransactionManager")
+    @Primary
     public PlatformTransactionManager mysqlTransactionManager(@Qualifier("centralEntityManager") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
