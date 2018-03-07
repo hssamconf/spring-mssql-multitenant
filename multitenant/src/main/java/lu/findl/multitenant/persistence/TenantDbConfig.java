@@ -36,12 +36,16 @@ import java.util.stream.Collectors;
 )
 public class TenantDbConfig {
 
-    @Autowired
     private MultiTenantConnectionProvider multiTenantConnectionProvider;
-    @Autowired
     private CurrentTenantIdentifierResolver currentTenantIdentifierResolver;
-    @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    public TenantDbConfig(MultiTenantConnectionProvider multiTenantConnectionProvider, CurrentTenantIdentifierResolver currentTenantIdentifierResolver, DataSource dataSource) {
+        this.multiTenantConnectionProvider = multiTenantConnectionProvider;
+        this.currentTenantIdentifierResolver = currentTenantIdentifierResolver;
+        this.dataSource = dataSource;
+    }
 
     // getting hibernate properties from hibernate.properties
     private Map<String, Object> hibernateProperties() {

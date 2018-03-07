@@ -21,7 +21,6 @@ public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentif
             return account.getDatabaseName();
         } catch (Exception e) {
             System.out.println("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier => " + DEFAULT_TENANT_ID);
-
             return DEFAULT_TENANT_ID;
         }
     }
