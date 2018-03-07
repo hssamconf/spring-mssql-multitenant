@@ -1,9 +1,12 @@
 package lu.findl.multitenant.persistence;
 
 import lu.findl.multitenant.entities.tenant.Customer;
+import org.hibernate.MultiTenancyStrategy;
+import org.hibernate.cfg.Environment;
+import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
+import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +36,13 @@ import java.util.stream.Collectors;
 )
 public class TenantDbConfig {
 
+    @Autowired
+    private MultiTenantConnectionProvider multiTenantConnectionProvider;
+    @Autowired
+    private CurrentTenantIdentifierResolver currentTenantIdentifierResolver;
+    @Autowired
+    private DataSource dataSource;
+
     // getting hibernate properties from hibernate.properties
     private Map<String, Object> hibernateProperties() {
 
@@ -50,31 +60,26 @@ public class TenantDbConfig {
         }
     }
 
-    @Bean
-    @ConfigurationProperties("tenant.datasource")
-    public DataSourceProperties tenantDataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    @ConfigurationProperties("tenant.datasource")
-    public DataSource tenantDataSource() {
-        return tenantDataSourceProperties().initializeDataSourceBuilder().build();
-    }
-
     @Bean(name = "tenantEntityManager")
     public LocalContainerEntityManagerFactoryBean tenantEntityManagerFactory(
             EntityManagerFactoryBuilder builder) {
+        Map<String, Object> hp = hibernateProperties();
+
+        hp.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
+        hp.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
+        hp.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
+        System.out.println("IN TenantDbConfig.LocalContainerEntityManagerFactoryBean");
         return builder
-                .dataSource(tenantDataSource())
+                .dataSource(dataSource)
                 .packages(Customer.class)
-                .properties(hibernateProperties())
+                .properties(hp)
                 .persistenceUnit("tenantPU")
                 .build();
     }
 
     @Bean(name = "tenantTransactionManager")
-    public PlatformTransactionManager mysqlTransactionManager(@Qualifier("tenantEntityManager") EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager tenantTransactionManager(@Qualifier("tenantEntityManager") EntityManagerFactory entityManagerFactory) {
+        System.out.println("IN TenantDbConfig.tenantTransactionManager");
         return new JpaTransactionManager(entityManagerFactory);
     }
 }
