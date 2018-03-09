@@ -5,6 +5,10 @@ jwt:
   expires_in: 86400 # 2 mi utes
   secret: multitenant
   cookie: AUTH-TOKEN
+db:
+  url: jdbc:sqlserver://192.168.1.29:1433
+  username: sa
+  password: Casa123++
 
 central:
   datasource:
