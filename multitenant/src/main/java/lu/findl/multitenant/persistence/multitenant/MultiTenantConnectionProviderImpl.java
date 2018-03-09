@@ -35,31 +35,31 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
     @Bean
     @ConfigurationProperties("tenant.datasource")
     public DataSource tenantDataSource() {
-        System.out.println("IN tenantDataSource");
+        //System.out.println("IN tenantDataSource");
         return tenantDataSourceProperties().initializeDataSourceBuilder().build();
     }
 
     @PostConstruct
     public void load() {
-        System.out.println("IN MultiTenantConnectionProviderImpl.load");
+        //System.out.println("IN MultiTenantConnectionProviderImpl.load");
         dataSourcesMap = new HashMap<>();
         dataSourcesMap.put(DEFAULT_TENANT_ID, tenantDataSource());
     }
 
     @Override
     protected DataSource selectAnyDataSource() {
-        System.out.println("MultiTenantConnectionProviderImpl.selectAnyDataSource");
+        //System.out.println("MultiTenantConnectionProviderImpl.selectAnyDataSource");
         return dataSourcesMap.get(DEFAULT_TENANT_ID);
     }
 
     @Override
     protected DataSource selectDataSource(String tenantIdentifier) {
-        System.out.println("MultiTenantConnectionProviderImpl.selectDataSource" + tenantIdentifier);
+        //System.out.println("MultiTenantConnectionProviderImpl.selectDataSource" + tenantIdentifier);
 
         DataSource dt;
         if (dataSourcesMap.get(tenantIdentifier) != null) return dataSourcesMap.get(tenantIdentifier);
         else {
-            System.out.println("MultiTenantConnectionProviderImpl.selectDataSource --- Creating new datasource" + tenantIdentifier);
+            //System.out.println("MultiTenantConnectionProviderImpl.selectDataSource --- Creating new datasource" + tenantIdentifier);
             dt = createDataSource(tenantIdentifier);
             dataSourcesMap.put(tenantIdentifier, dt);
             return dt;

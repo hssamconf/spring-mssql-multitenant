@@ -14,20 +14,20 @@ public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentif
     @Override
     public String resolveCurrentTenantIdentifier() {
         try {
-            System.out.println("IN CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier");
+            //System.out.println("IN CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier");
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             Account account = ((AppUserDetails) auth.getPrincipal()).getAccount();
-            System.out.println("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier => " + account.getDatabaseName());
+            //System.out.println("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier => " + account.getDatabaseName());
             return account.getDatabaseName();
         } catch (Exception e) {
-            System.out.println("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier => " + DEFAULT_TENANT_ID);
+            //System.out.println("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier => " + DEFAULT_TENANT_ID);
             return DEFAULT_TENANT_ID;
         }
     }
 
     @Override
     public boolean validateExistingCurrentSessions() {
-        System.out.println("IN CurrentTenantIdentifierResolverImpl.validateExistingCurrentSessions => true");
+        //System.out.println("IN CurrentTenantIdentifierResolverImpl.validateExistingCurrentSessions => true");
         return true;
     }
 }

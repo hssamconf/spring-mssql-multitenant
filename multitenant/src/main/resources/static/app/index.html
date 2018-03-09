@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" ui-sref="customers" ui-sref-active="active">List des customers </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" ui-sref="create_customer" ui-sref-active="active">Créer un customer </a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto" ng-if="user">
                 <li class="nav-item">
@@ -58,6 +61,7 @@
 <!--AngularJS-->
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/angular-messages/angular-messages.min.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="../bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
 <script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>

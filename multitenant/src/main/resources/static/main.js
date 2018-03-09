@@ -1,5 +1,5 @@
 // Define the `MultitenantApp` module
-var MultitenantApp = angular.module('MultitenantApp', ['ngAnimate', 'ui.router', 'oc.lazyLoad', 'toastr']);
+var MultitenantApp = angular.module('MultitenantApp', ['ngAnimate','ngMessages', 'ui.router', 'oc.lazyLoad', 'toastr']);
 
 MultitenantApp.constant('API_URL', '');
 
@@ -38,7 +38,7 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/accueil.html",
             controller: "AccueilController",
             resolve: {
-                user: function ($http, $rootScope,AUTH_EVENTS) {
+                user: function ($http, $rootScope, AUTH_EVENTS) {
                     return $http.get("/api/whoami").then(function (res) {
                         $rootScope.$broadcast(AUTH_EVENTS.authenticated, {user: res.data.data});
                     });
@@ -58,7 +58,7 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/customers.html",
             controller: "CustomersController",
             resolve: {
-                user: function ($http, $rootScope,AUTH_EVENTS) {
+                user: function ($http, $rootScope, AUTH_EVENTS) {
                     return $http.get("/api/whoami").then(function (res) {
                         $rootScope.$broadcast(AUTH_EVENTS.authenticated, {user: res.data.data});
                     });
@@ -71,6 +71,31 @@ MultitenantApp.config(function ($stateProvider, $urlRouterProvider) {
                         name: 'MultitenantApp',
                         files: [
                             'controllers/CustomersController.js'
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('create_customer', {
+            url: "/create_customer.html",
+            templateUrl: "views/create_customer.html",
+            controller: "CreateCustomerController",
+            resolve: {
+                user: function ($http, $rootScope, AUTH_EVENTS) {
+                    return $http.get("/api/whoami").then(function (res) {
+                        $rootScope.$broadcast(AUTH_EVENTS.authenticated, {user: res.data.data});
+                    });
+                },
+                customers: function ($http) {
+                    return $http.get("/api/getAllCustomers");
+                },
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MultitenantApp',
+                        files: [
+                            '../bower_components/ng-password-generator/ng-password-generator.js',
+                            '../bower_components/angular-password/angular-password.min.js',
+                            'controllers/CreateCustomerController.js'
                         ]
                     });
                 }]

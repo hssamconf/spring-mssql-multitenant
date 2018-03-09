@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/hssamconf/spring-mssql-multitenant/issues"
   },
-  "homepage": "https://github.com/hssamconf/spring-mssql-multitenant#readme"
+  "homepage": "https://github.com/hssamconf/spring-mssql-multitenant#readme",
+  "dependencies": {}
 }

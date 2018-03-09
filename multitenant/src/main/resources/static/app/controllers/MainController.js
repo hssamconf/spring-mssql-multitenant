@@ -6,6 +6,7 @@ angular.module('MultitenantApp').controller('MainController', function MainContr
     $scope.LoginController = {};
     $scope.AccueilController = {};
     $scope.CustomersController = {};
+    $scope.CreateCustomerController = {};
 
     var MainController = $scope.MainController;
 

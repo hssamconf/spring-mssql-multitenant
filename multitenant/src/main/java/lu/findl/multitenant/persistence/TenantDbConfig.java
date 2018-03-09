@@ -72,7 +72,7 @@ public class TenantDbConfig {
         hp.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
         hp.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
         hp.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
-        System.out.println("IN TenantDbConfig.LocalContainerEntityManagerFactoryBean");
+        //System.out.println("IN TenantDbConfig.LocalContainerEntityManagerFactoryBean");
         return builder
                 .dataSource(dataSource)
                 .packages(Customer.class)
@@ -83,7 +83,7 @@ public class TenantDbConfig {
 
     @Bean(name = "tenantTransactionManager")
     public PlatformTransactionManager tenantTransactionManager(@Qualifier("tenantEntityManager") EntityManagerFactory entityManagerFactory) {
-        System.out.println("IN TenantDbConfig.tenantTransactionManager");
+        //System.out.println("IN TenantDbConfig.tenantTransactionManager");
         return new JpaTransactionManager(entityManagerFactory);
     }
 }
