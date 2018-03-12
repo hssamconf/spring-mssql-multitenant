@@ -89,7 +89,7 @@ public class MainController {
             String crypt = BCrypt.hashpw(post.getPassword(), BCrypt.gensalt());
 
             centralService.saveAccount(
-                    new Account(post.getName(), crypt, "tenant_" + post.getName(), "", "ROLE_USER")
+                    new Account(post.getName(), crypt, "tenant_" + post.getName(), DB_PASSWORD, "ROLE_USER")
             );
 
             return ResponseEntity.status(HttpStatus.OK).body(new Reponse(0, true));
