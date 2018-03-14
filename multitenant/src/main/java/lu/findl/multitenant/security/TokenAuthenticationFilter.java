@@ -30,12 +30,12 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		System.out.println("In TokenAuthenticationFilter");
+		// System.out.println("In TokenAuthenticationFilter");
 
 		String username = null;
 		String authToken = tokenHelper.getToken(request);
 		if (authToken != null) {
-			System.out.println("authToken != null");
+			// System.out.println("authToken != null");
 			// get username from token
 			try {
 				username = tokenHelper.getUsernameFromToken(authToken);
@@ -44,7 +44,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 			}
 
 			if (username != null) {
-				System.out.println("username != null");
+				// System.out.println("username != null");
 				// get user
 				AppUserDetails userDetails = (AppUserDetails) userDetailsService.loadUserByUsername(username);
 				// create authentication

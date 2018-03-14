@@ -17,7 +17,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		// This is invoked when user tries to access a secured REST resource
 		// without supplying any credentials We should just send a 401
 		// Unauthorized response because there is no 'login page' to redirect to
-		System.out.println("In -- RestAuthenticationEntryPoint");
+		// System.out.println("In -- RestAuthenticationEntryPoint");
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
 	}
 }

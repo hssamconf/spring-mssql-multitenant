@@ -25,7 +25,7 @@ public class LogoutSuccess implements LogoutSuccessHandler {
 	public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 
-		System.out.println("LogoutSuccess");
+		// System.out.println("LogoutSuccess");
 		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
 		response.setContentType("application/json");

@@ -39,7 +39,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		System.out.println("onAuthenticationSuccess");
+		// System.out.println("onAuthenticationSuccess");
 
 		clearAuthenticationAttributes(request);
 		Account account = ((AppUserDetails) authentication.getPrincipal()).getAccount();
